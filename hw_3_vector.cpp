@@ -94,6 +94,123 @@ int MyVector::vsize(){
 	return size;
 }
 
+int MyVector::empty(){
+	
+	if(size == 0){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
+int MyVector::at(int idx){
+	
+	if(idx >= size){
+		return -1;
+	}
+
+	else{
+		return p[idx];
+	}
+}
+
+void MyVector::resize(int n){
+
+	int* temp = new int[n];
+
+	for(int i = 0; i < n; i++){
+		
+		if(i < size){
+			temp[i] = p[i];
+		}
+		else{
+			temp[i] = 0;
+		}
+	}
+
+	delete p;
+
+	p = temp;
+}
+
+void MyVector::push_back(int x){
+
+	int* temp = new int[size + 1];
+
+	for(int i = 0; i < size; i++){
+		temp[i] = p[i];
+	}
+
+	temp[size] = x;
+
+	size++;
+
+	delete p;
+
+	p = temp;
+}
+
+void MyVector::pop_back(){
+
+	int* temp = new int[size - 1];
+
+	for(int i = 0; i < size - 1; i++){
+		temp[i] = p[i];
+	}
+
+	size--;
+
+	delete p;
+	
+	p = temp;
+}
+
+void MyVector::insert(int idx, int x){
+
+	int* temp = new int[++size];
+
+	for(int i = 0; i < size; i++){
+
+		if(i != idx){
+			temp[i] = p[i];
+		}
+		else{
+			temp[i] = x;
+		}
+	}
+
+	delete p;
+
+	p = temp;
+}
+
+void MyVector::erase(int idx){
+
+	int* temp = new int[size - 1];
+
+	int pindx = 0;
+	int tindx = 0;
+
+	for(pindx = 0; pindx < size; pindx++){
+
+		if(pindx != idx){
+			temp[tindx++] = p[pindx];
+		}
+	}
+
+	size--;
+
+	delete p;
+
+	p = temp;
+}
+
+MyVector::MyVector(){
+	p = NULL;
+	size = 0;
+}
+
 
 // The main function has been completed for you. 
 // It is used to test your implmentation. 
