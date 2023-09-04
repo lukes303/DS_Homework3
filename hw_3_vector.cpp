@@ -88,6 +88,12 @@ private:
 	// vector operations. 
 };
 
+//Implementations
+
+int MyVector::vsize(){
+	return size;
+}
+
 
 // The main function has been completed for you. 
 // It is used to test your implmentation. 
