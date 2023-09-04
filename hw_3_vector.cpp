@@ -91,11 +91,12 @@ private:
 //Implementations
 
 int MyVector::vsize(){
+	cout << "VSIZE!" << endl;
 	return size;
 }
 
 int MyVector::empty(){
-	
+	cout << "EMPTY!" << endl;
 	if(size == 0){
 		return 1;
 	}
@@ -105,7 +106,7 @@ int MyVector::empty(){
 }
 
 int MyVector::at(int idx){
-	
+	cout << "AT!" << endl;	
 	if(idx >= size){
 		return -1;
 	}
@@ -116,7 +117,7 @@ int MyVector::at(int idx){
 }
 
 void MyVector::resize(int n){
-
+	cout << "RESIZE!" << endl;	
 	int* temp = new int[n];
 
 	for(int i = 0; i < n; i++){
@@ -129,13 +130,15 @@ void MyVector::resize(int n){
 		}
 	}
 
+	size = n;
+
 	delete p;
 
 	p = temp;
 }
 
 void MyVector::push_back(int x){
-
+	cout << "PUSHBACK!" << endl;	
 	int* temp = new int[size + 1];
 
 	for(int i = 0; i < size; i++){
@@ -152,7 +155,7 @@ void MyVector::push_back(int x){
 }
 
 void MyVector::pop_back(){
-
+	cout << "POPBACK!" << endl;	
 	int* temp = new int[size - 1];
 
 	for(int i = 0; i < size - 1; i++){
@@ -167,16 +170,20 @@ void MyVector::pop_back(){
 }
 
 void MyVector::insert(int idx, int x){
-
+	cout << "INSERT!" << endl;	
 	int* temp = new int[++size];
 
-	for(int i = 0; i < size; i++){
+	int pindx = 0;
+	int tindx = 0;
 
-		if(i != idx){
-			temp[i] = p[i];
+	for(tindx = 0; tindx < size; tindx++){
+
+		if(tindx != idx){
+			temp[tindx] = p[pindx];
+			pindx++;
 		}
 		else{
-			temp[i] = x;
+			temp[tindx] = x;
 		}
 	}
 
@@ -186,6 +193,7 @@ void MyVector::insert(int idx, int x){
 }
 
 void MyVector::erase(int idx){
+	cout << "ERASE!" << endl;	
 
 	int* temp = new int[size - 1];
 
