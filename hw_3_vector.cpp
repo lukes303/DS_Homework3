@@ -91,126 +91,136 @@ private:
 //Implementations
 
 int MyVector::vsize(){
-	cout << "VSIZE!" << endl;
 	return size;
 }
 
 int MyVector::empty(){
-	cout << "EMPTY!" << endl;
-	if(size == 0){
-		return 1;
-	}
-	else{
-		return 0;
-	}
+	//If size is 0, the vector is empty, so return 1
+	if(size == 0) return 1;
+
+	//If the size is not 0, the vector is not empty, so return 0
+	else return 0;
 }
 
 int MyVector::at(int idx){
-	cout << "AT!" << endl;	
-	if(idx >= size){
-		return -1;
-	}
+	//If the idx is greater than or equal to size, the index is out of range
+	if(idx >= size) return -1;
 
-	else{
-		return p[idx];
-	}
+	//If the idx is not greater than or equal to size, return the element at idx.
+	else return p[idx];
 }
 
 void MyVector::resize(int n){
-	cout << "RESIZE!" << endl;	
+	//Create a temporary int pointer that the first int of an int array of n size
 	int* temp = new int[n];
 
+	//For loop that steps through the elements in the array pointed at by temp. 
 	for(int i = 0; i < n; i++){
-		
-		if(i < size){
-			temp[i] = p[i];
-		}
-		else{
-			temp[i] = 0;
-		}
+		//If i is less then the current size, copy other elements from p to temp
+		if(i < size) temp[i] = p[i];
+
+		//If i has exceeded the current size, the vector was enlarged. Fill extra space with zeros.
+		else temp[i] = 0;
 	}
 
+	//Update the size
 	size = n;
 
+	//Delete the data pointed to by p
 	delete p;
 
+	//Reassign p to temp
 	p = temp;
 }
 
 void MyVector::push_back(int x){
-	cout << "PUSHBACK!" << endl;	
+	//Create a temporary int pointer that the first int of an int array of size + 1
 	int* temp = new int[size + 1];
 
+	//Copy elements from p to temp
 	for(int i = 0; i < size; i++){
 		temp[i] = p[i];
 	}
 
+	//Append x to end of temp
 	temp[size] = x;
 
+	//Increase size
 	size++;
 
+	//Delete data at p
 	delete p;
 
+	//Reassign
 	p = temp;
 }
 
 void MyVector::pop_back(){
-	cout << "POPBACK!" << endl;	
+	//Create a temporary int pointer that the first int of an int array of size - 1
 	int* temp = new int[size - 1];
 
+	//Copy every element from p to temp except for the last element
 	for(int i = 0; i < size - 1; i++){
 		temp[i] = p[i];
 	}
 
+	//Decrement size
 	size--;
 
+	//Delete data pointed at by p
 	delete p;
 	
+	//Reassign
 	p = temp;
 }
 
 void MyVector::insert(int idx, int x){
-	cout << "INSERT!" << endl;	
+	//Create a temporary int pointer that the first int of an int array of size + 1
 	int* temp = new int[++size];
 
+	//Create two indexes for p and for temp
 	int pindx = 0;
 	int tindx = 0;
 
+	//Step through int array pointed to by temp
 	for(tindx = 0; tindx < size; tindx++){
-
+		//Copy elements from p to temp if if tindx does not equal idx. Increment pindx
 		if(tindx != idx){
 			temp[tindx] = p[pindx];
 			pindx++;
 		}
-		else{
-			temp[tindx] = x;
-		}
+		//If tidx and idx equal, insert x
+		else temp[tindx] = x;
 	}
 
+	//Delete data pointed at by p
 	delete p;
 
+	//Reassign
 	p = temp;
 }
 
 void MyVector::erase(int idx){
-	cout << "ERASE!" << endl;	
-
+	//Create a temporary int pointer that the first int of an int array of size - 1
 	int* temp = new int[size - 1];
 
+	//Create two indexes for p and for temp
 	int pindx = 0;
 	int tindx = 0;
 
+	//Step through p
 	for(pindx = 0; pindx < size; pindx++){
-
-		if(pindx != idx){
-			temp[tindx++] = p[pindx];
-		}
+		//If pindx does not equal idx, copy elements from p to temp, increment tindx
+		if(pindx != idx) temp[tindx++] = p[pindx];
 	}
 
+	//Decrement size
 	size--;
 
+	//Delete data pointed at by p
 	delete p;
 
+	//Reassign
 	p = temp;
 }
 
