@@ -156,48 +156,57 @@ void MyVector::push_back(int x){
 }
 
 void MyVector::pop_back(){
-	//Create a temporary int pointer that the first int of an int array of size - 1
-	int* temp = new int[size - 1];
+	//pop_back only works if vector has elements
+	if(empty() == 0){
+		//Create a temporary int pointer that the first int of an int array of size - 1
+		int* temp = new int[size - 1];
 
-	//Copy every element from p to temp except for the last element
-	for(int i = 0; i < size - 1; i++){
-		temp[i] = p[i];
+		//Copy every element from p to temp except for the last element
+		for(int i = 0; i < size - 1; i++){
+			temp[i] = p[i];
+		}
+
+		//Decrement size
+		size--;
+
+		//Delete data pointed at by p
+		delete p;
+	
+		//Reassign
+		p = temp;
 	}
 
-	//Decrement size
-	size--;
-
-	//Delete data pointed at by p
-	delete p;
-	
-	//Reassign
-	p = temp;
 }
 
 void MyVector::insert(int idx, int x){
-	//Create a temporary int pointer that the first int of an int array of size + 1
-	int* temp = new int[++size];
+	//insert only does something if idx is in range of the currnt vector
+	if(idx >= size){
+		//Create a temporary int pointer that the first int of an int array of size + 1
+		int* temp = new int[++size];
 
-	//Create two indexes for p and for temp
-	int pindx = 0;
-	int tindx = 0;
+		//Create two indexes for p and for temp
+		int pindx = 0;
+		int tindx = 0;
 
-	//Step through int array pointed to by temp
-	for(tindx = 0; tindx < size; tindx++){
-		//Copy elements from p to temp if if tindx does not equal idx. Increment pindx
-		if(tindx != idx){
-			temp[tindx] = p[pindx];
-			pindx++;
+		//Step through int array pointed to by temp
+		for(tindx = 0; tindx < size; tindx++){
+			//Copy elements from p to temp if if tindx does not equal idx. Increment pindx
+			if(tindx != idx){
+				temp[tindx] = p[pindx];
+				pindx++;
+			}
+			//If tidx and idx equal, insert x
+			else temp[tindx] = x;
 		}
-		//If tidx and idx equal, insert x
-		else temp[tindx] = x;
+
+		//Delete data pointed at by p
+		delete p;
+
+		//Reassign
+		p = temp;
+
 	}
-
-	//Delete data pointed at by p
-	delete p;
-
-	//Reassign
-	p = temp;
+	
 }
 
 void MyVector::erase(int idx){
