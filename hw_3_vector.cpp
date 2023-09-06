@@ -210,27 +210,30 @@ void MyVector::insert(int idx, int x){
 }
 
 void MyVector::erase(int idx){
-	//Create a temporary int pointer that the first int of an int array of size - 1
-	int* temp = new int[size - 1];
+	//Erase only works if idx is in range of current size
+	if(idx >= size){
+		//Create a temporary int pointer that the first int of an int array of size - 1
+		int* temp = new int[size - 1];
 
-	//Create two indexes for p and for temp
-	int pindx = 0;
-	int tindx = 0;
+		//Create two indexes for p and for temp
+		int pindx = 0;
+		int tindx = 0;
 
-	//Step through p
-	for(pindx = 0; pindx < size; pindx++){
-		//If pindx does not equal idx, copy elements from p to temp, increment tindx
-		if(pindx != idx) temp[tindx++] = p[pindx];
+		//Step through p
+		for(pindx = 0; pindx < size; pindx++){
+			//If pindx does not equal idx, copy elements from p to temp, increment tindx
+			if(pindx != idx) temp[tindx++] = p[pindx];
+		}
+
+		//Decrement size
+		size--;
+
+		//Delete data pointed at by p
+		delete p;
+
+		//Reassign
+		p = temp;
 	}
-
-	//Decrement size
-	size--;
-
-	//Delete data pointed at by p
-	delete p;
-
-	//Reassign
-	p = temp;
 }
 
 MyVector::MyVector(){
