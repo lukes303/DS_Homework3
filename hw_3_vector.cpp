@@ -134,7 +134,7 @@ void MyVector::resize(int n){
 }
 
 void MyVector::push_back(int x){
-	//Create a temporary int pointer that the first int of an int array of size + 1
+	//Create a temporary int pointer at the first int of an int array of size + 1
 	int* temp = new int[size + 1];
 
 	//Copy elements from p to temp
@@ -180,8 +180,8 @@ void MyVector::pop_back(){
 
 void MyVector::insert(int idx, int x){
 	//insert only does something if idx is in range of the currnt vector
-	if(idx >= size){
-		//Create a temporary int pointer that the first int of an int array of size + 1
+	if(idx <= size){
+		//Create a temporary int pointer at the first int of an int array of size + 1
 		int* temp = new int[++size];
 
 		//Create two indexes for p and for temp
@@ -211,8 +211,8 @@ void MyVector::insert(int idx, int x){
 
 void MyVector::erase(int idx){
 	//Erase only works if idx is in range of current size
-	if(idx >= size){
-		//Create a temporary int pointer that the first int of an int array of size - 1
+	if(idx <= size){
+		//Create a temporary int pointer at the first int of an int array of size - 1
 		int* temp = new int[size - 1];
 
 		//Create two indexes for p and for temp
@@ -236,6 +236,7 @@ void MyVector::erase(int idx){
 	}
 }
 
+//Constructor
 MyVector::MyVector(){
 	p = NULL;
 	size = 0;

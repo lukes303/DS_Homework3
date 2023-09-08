@@ -1,0 +1,36 @@
+//mode 0 sample output
+5
+0
+8
+-1
+98
+1
+
+//mode 1 sample output
+4
+18
+19
+20
+21
+
+//mode 2 sample output
+3
+-7
+4
+6
+
+//mode 3 sample output
+7
+7
+11
+15
+19
+500
+23
+27
+
+//mode 4 sample output
+3
+200
+400
+500
